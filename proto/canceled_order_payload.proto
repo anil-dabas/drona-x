@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.spot.exchange;
+
+option java_package = "com.spot.exchange.proto";
+option java_multiple_files = true;
+
+message CanceledOrderPayload {
+  int64 order_id = 1;
+  string symbol = 2;
+  int64 timestamp = 3;
+}

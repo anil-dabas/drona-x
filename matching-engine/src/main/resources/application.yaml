@@ -1,0 +1,26 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: matching-engine
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: order_group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+  data:
+    redis:
+      host: cex-redis
+      port: 6379
+
+kafka:
+  topic:
+    order: spot.matching.BTC-USDT.request
+    executed: matching.order.matched
+    cancelled: matching.order.canceled

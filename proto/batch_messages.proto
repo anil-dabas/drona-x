@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.spot.exchange;
+
+option java_package = "com.spot.exchange.proto";
+option java_multiple_files = true;
+
+import "trade_response.proto";
+import "canceled_order_payload.proto";
+
+message TradeResponseBatch {
+  repeated TradeResponse trades = 1;
+}
+
+message CanceledOrderPayloadBatch {
+  repeated CanceledOrderPayload cancellations = 1;
+}

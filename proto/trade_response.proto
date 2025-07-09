@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.spot.exchange;
+
+option java_package = "com.spot.exchange.proto";
+option java_multiple_files = true;
+
+message TradeResponse {
+  int64 id = 1;
+  string symbol = 2;
+  int64 buy = 3;
+  int64 sell = 4;
+  int32 quantity = 5;
+  int32 price = 6;
+  bool is_buyer_maker = 7;
+  int64 timestamp = 8;
+}

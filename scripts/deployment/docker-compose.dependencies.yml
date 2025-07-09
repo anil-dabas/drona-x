@@ -1,0 +1,73 @@
+name: drona-x
+services:
+  cex-mysql:
+    image: mysql:8
+    container_name: cex-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--password=password"]
+      interval: 30s
+      retries: 3
+      timeout: 10s
+      start_period: 20s
+
+  cex-redis:
+    image: redis:latest
+    container_name: cex-redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      retries: 3
+      timeout: 10s
+      start_period: 20s
+
+  cex-zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.1
+    hostname: cex-zookeeper
+    container_name: cex-zookeeper
+    restart: always
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+
+  cex-kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: cex-kafka
+    restart: always
+    depends_on:
+      - cex-zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: cex-zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    ports:
+      - "9092:9092"
+
+    healthcheck:
+      test: ["CMD", "kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 30s
+      retries: 5
+      timeout: 10s
+      start_period: 20s
+

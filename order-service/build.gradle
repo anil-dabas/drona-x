@@ -1,0 +1,34 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'com.google.protobuf' version '0.9.4'
+}
+
+group = 'com.spot.exchange.order'
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java:8.0.33'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	implementation 'org.apache.commons:commons-lang3'
+	implementation 'org.modelmapper:modelmapper:3.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.google.protobuf:protobuf-java:3.25.1'
+}
+
+bootJar {
+	enabled = true
+	mainClass = 'com.spot.exchange.order.OrderServiceApplication'
+	archiveFileName = "order-service.jar"
+}
+
+jar {
+	enabled = false
+}

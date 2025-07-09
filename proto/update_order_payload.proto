@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package com.spot.exchange;
+
+option java_package = "com.spot.exchange.proto";
+option java_multiple_files = true;
+
+message UpdateOrderPayload {
+  int64 id = 1;
+  string user_id = 2;
+  string id_str = 3;
+  int64 created_at = 4;
+  int64 updated_at = 5;
+  string symbol = 6;
+  OrderSide side = 7;
+  string price = 8;
+  string quantity = 9;
+  string quote_quantity = 10;
+  string status = 11;
+  string time_in_force = 12;
+  string executed_quantity = 13;
+  string executed_quote_quantity = 14;
+}
+
+enum OrderSide {
+  UNKNOWN = 0;
+  BUY = 1;
+  SELL = -1;
+}

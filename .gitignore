@@ -1,0 +1,40 @@
+# Gradle
+.gradle/
+gradle/caches/
+gradle/wrapper/dists/
+build/
+*/build/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Service logs and Docker files
+service-logs/
+market-data-service/Dockerfile
+market-data-service/docker-compose.yml
+
+# STS, IntelliJ, NetBeans, VS Code (unchanged)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+.vscode/

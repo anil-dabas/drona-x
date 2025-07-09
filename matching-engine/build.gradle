@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'com.google.protobuf' version '0.9.4'
+}
+
+group = 'com.spot.exchange.me'
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.lmax:disruptor:3.4.2'
+	implementation 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	implementation 'com.google.protobuf:protobuf-java:3.25.1'
+}
+
+bootJar {
+	enabled = true
+	mainClass = 'com.spot.exchange.me.MatchingEngineApplication'
+	archiveFileName = "matching-engine.jar"
+}
+
+jar {
+	enabled = false
+}
