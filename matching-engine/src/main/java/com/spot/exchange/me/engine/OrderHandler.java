@@ -27,7 +27,7 @@ public class OrderHandler implements EventHandler<OrderEvent> {
   // Benchmarking fields
   private long firstOrderTimestamp = -1;
   private long lastOrderTimestamp = -1;
-  private final long expectedOrderCount = 5_500_000;
+  private final long expectedOrderCount = 500_000;
   private final AtomicLong orderCount = new AtomicLong(0);
 
   @Autowired

@@ -16,9 +16,9 @@ services:
       context: ../../order-service
       dockerfile: ../../order-service/Dockerfile
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://cex-mysql:3306/mydb
-      SPRING_REDIS_HOST: cex-redis
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: cex-kafka:9092
+      SPRING_DATASOURCE_URL: jdbc:mysql://drona-mysql:3306/mydb
+      SPRING_REDIS_HOST: drona-redis
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: drona-kafka:9092
     ports:
       - "8082:8084"
 
@@ -29,8 +29,8 @@ services:
       context: ../../matching-engine
       dockerfile: ../../matching-engine/Dockerfile
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://cex-mysql:3306/mydb
-      SPRING_REDIS_HOST: cex-redis
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: cex-kafka:9092
+      SPRING_DATASOURCE_URL: jdbc:mysql://drona-mysql:3306/mydb
+      SPRING_REDIS_HOST: drona-redis
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: drona-kafka:9092
     ports:
       - "8081:8085"

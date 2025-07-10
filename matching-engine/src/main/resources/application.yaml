@@ -16,7 +16,7 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
   data:
     redis:
-      host: cex-redis
+      host: drona-redis
       port: 6379
 
 kafka:

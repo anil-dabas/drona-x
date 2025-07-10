@@ -1,8 +1,8 @@
 name: drona-x
 services:
-  cex-mysql:
+  drona-mysql:
     image: mysql:8
-    container_name: cex-mysql
+    container_name: drona-mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -19,9 +19,9 @@ services:
       timeout: 10s
       start_period: 20s
 
-  cex-redis:
+  drona-redis:
     image: redis:latest
-    container_name: cex-redis
+    container_name: drona-redis
     restart: always
     ports:
       - "6379:6379"
@@ -33,10 +33,10 @@ services:
       timeout: 10s
       start_period: 20s
 
-  cex-zookeeper:
+  drona-zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
-    hostname: cex-zookeeper
-    container_name: cex-zookeeper
+    hostname: drona-zookeeper
+    container_name: drona-zookeeper
     restart: always
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -45,15 +45,15 @@ services:
       - "2181:2181"
 
 
-  cex-kafka:
+  drona-kafka:
     image: confluentinc/cp-kafka:7.6.1
-    container_name: cex-kafka
+    container_name: drona-kafka
     restart: always
     depends_on:
-      - cex-zookeeper
+      - drona-zookeeper
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: cex-zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: drona-zookeeper:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
