@@ -2,9 +2,9 @@
 
 ### Background 
 
-- This document explains on how we can test the Matching engine for its throughput for matching operation 
-- If we see there are 3 sub-modules in the project 
-  1. Driver Service - Mimic the Users who are sending the orders
+- This document explains how we can test the Matching engine for its throughput for matching operation 
+- If we see there are three submodules in the project 
+  1. Driver Service—Mimic the Users who are sending the orders
   2. Order Service  - Acts as the ODX
   3. Matching Engine - Actual matching engine 
 
@@ -15,4 +15,3 @@
 3. Once order-service is fully up Run ```driver``` service and wait for the log ```Finished executing XXXX order in YYY Milliseconds```
     for example if you run with current config you will get ```Finished executing 1404000 order in AAA Milliseconds and BBB Seconds .```
 4. When you finally see the above log then run the ```matching-engine```
-5. You can monitor the time interval from the start to the end of the matching engine and that will be the time to do XXX operations
